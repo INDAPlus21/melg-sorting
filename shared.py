@@ -22,10 +22,7 @@ def visualize(history):
 
     # Calculate width and height of bars
     bar_width = 500 / len(history[0])
-    max_height = 0
-
-    for item in history[0]:
-        max_height = max(max_height, item)
+    max_height = max(history[0])
 
     running = True
     current_state = 0

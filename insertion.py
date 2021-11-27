@@ -2,10 +2,9 @@ import shared
 
 
 def sort(array):
-    i = 1
     history = [array.copy()]
 
-    while i < len(array):
+    for i in range(1, len(array)):
         x = array[i]
         j = i - 1
 
@@ -16,7 +15,6 @@ def sort(array):
 
         array[j + 1] = x
         history.append(array.copy())  # Save state
-        i += 1
 
     return (array, history)
 
