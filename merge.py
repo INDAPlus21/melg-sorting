@@ -1,24 +1,33 @@
 import shared
 
+# Global history variable as it makes things easier
+history = []
+
 
 def sort(array):
-    return sort_internal(array)
+    history.clear(),
+    sorted = sort_internal(array, array, 0)
+    history.append(sorted)
+    return (sorted, history)
 
 
-def sort_internal(array):
-    history = [array.copy()]
-
+def sort_internal(array, entire_array, index):
     if len(array) == 1:
-        return (array, history)
+        return array
 
     middle = len(array)//2
     left = array[:middle]
     right = array[middle:]
 
-    left = sort_internal(left)[0]
-    right = sort_internal(right)[0]
+    left = sort_internal(left, entire_array, index)
+    right = sort_internal(right, entire_array, index + middle)
 
-    return (merge(left, right), history)
+    # Save to history
+    entire_array[index:index+len(left)] = left
+    entire_array[index+len(left):index+len(left)+len(right)] = right
+    history.append(entire_array.copy())
+
+    return merge(left, right)
 
 
 def merge(a, b):
