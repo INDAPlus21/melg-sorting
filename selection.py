@@ -2,7 +2,7 @@ import shared
 
 
 def sort(array):
-    history = [array.copy()]
+    history = [(array.copy(), [])]
 
     for i in range(0, len(array) - 1):
         min_index = i
@@ -14,7 +14,7 @@ def sort(array):
 
         if min_index != i:
             array[i], array[min_index] = array[min_index], array[i]
-            history.append(array.copy())
+            history.append((array.copy(), [i, min_index]))
 
     return (array, history)
 

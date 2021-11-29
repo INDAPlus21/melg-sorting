@@ -2,7 +2,7 @@ import shared
 
 
 def sort(array):
-    history = [array.copy()]
+    history = [(array.copy(), [])]
 
     for i in range(len(array), 0, -1):
         max_index = array.index(max(array[:i]))
@@ -10,7 +10,7 @@ def sort(array):
         array[:max_index+1] = sub_array[::-1]  # Flip to start
         sub_array = array[:i]
         array[:i] = sub_array[::-1]  # Flip entire
-        history.append(array.copy())
+        history.append((array.copy(), list(range(0, i))))
 
     return (array, history)
 

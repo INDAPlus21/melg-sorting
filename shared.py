@@ -21,8 +21,8 @@ def visualize(history):
     pygame.display.set_caption("Visualisering Sorteringsalgoritmen")
 
     # Calculate width and height of bars
-    bar_width = 500 / len(history[0])
-    max_height = max(history[0])
+    bar_width = 500 / len(history[0][0])
+    max_height = max(history[0][0])
 
     running = True
     current_state = 0
@@ -35,11 +35,17 @@ def visualize(history):
         screen.fill((255, 255, 255))
 
         # Draw bars
-        for i in range(0, len(history[current_state])):
-            bar = history[current_state][i]
+        for i in range(0, len(history[current_state][0])):
+            bar = history[current_state][0][i]
             height = (bar / max_height) * 500 - 20
             y_position = 500 - height - 10
-            pygame.draw.rect(screen, (0, 0, 0), (i * bar_width + 10,
+
+            colour = (0, 0, 0)
+            # Selected
+            if i in history[current_state][1]:
+                colour = (255, 0, 0)
+
+            pygame.draw.rect(screen, colour, (i * bar_width + 10,
                              y_position, bar_width - 20, height))
 
         pygame.display.flip()

@@ -3,7 +3,7 @@ import shared
 
 # https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/
 def sort(array):
-    history = [array.copy()]
+    history = [(array.copy(), [])]
 
     i = 0
     while i < len(array):
@@ -13,7 +13,7 @@ def sort(array):
             i += 1
         else:
             array[i], array[i - 1] = array[i - 1], array[i]
-            history.append(array.copy())
+            history.append((array.copy(), [i - 1, i]))
             i -= 1
 
     return (array, history)

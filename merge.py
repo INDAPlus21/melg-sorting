@@ -7,7 +7,7 @@ history = []
 def sort(array):
     history.clear(),
     sorted = sort_internal(array, array, 0)
-    history.append(sorted)
+    history.append((sorted, list(range(0, len(array)))))
     return (sorted, history)
 
 
@@ -25,7 +25,8 @@ def sort_internal(array, entire_array, index):
     # Save to history
     entire_array[index:index+len(left)] = left
     entire_array[index+len(left):index+len(left)+len(right)] = right
-    history.append(entire_array.copy())
+    history.append((entire_array.copy(), list(
+        range(index, index+len(left)+len(right)))))
 
     return merge(left, right)
 

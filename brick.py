@@ -3,7 +3,7 @@ import shared
 
 # https://iq.opengenus.org/odd-even-sort/
 def sort(array):
-    history = [array.copy()]
+    history = [(array.copy(), [])]
 
     sorted = False
     while not sorted:
@@ -19,7 +19,7 @@ def loop(start, array, history, sorted):
     for i in range(start, len(array) - 1, 2):
         if array[i + 1] < array[i]:
             array[i + 1], array[i] = array[i], array[i + 1]
-            history.append(array.copy())
+            history.append((array.copy(), [i, i + 1]))
             sorted = False
 
     return (array, history, sorted)

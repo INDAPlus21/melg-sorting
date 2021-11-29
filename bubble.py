@@ -2,7 +2,7 @@ import shared
 
 
 def sort(array):
-    history = [array.copy()]
+    history = [(array.copy(), [])]
 
     sorted = False
     while not sorted:
@@ -11,7 +11,7 @@ def sort(array):
         for i in range(0, len(array) - 1):
             if array[i + 1] < array[i]:
                 array[i + 1], array[i] = array[i], array[i + 1]
-                history.append(array.copy())
+                history.append((array.copy(), [i, i + 1]))
                 sorted = False
 
     return (array, history)
