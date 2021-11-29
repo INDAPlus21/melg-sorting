@@ -12,10 +12,7 @@ def sort(array):
         if array[i] >= array[i - 1]:
             i += 1
         else:
-            # XOR-swapping to avoid temp variable
-            array[i] ^= array[i - 1]
-            array[i - 1] ^= array[i]
-            array[i] ^= array[i - 1]
+            array[i], array[i - 1] = array[i - 1], array[i]
             history.append(array.copy())
             i -= 1
 

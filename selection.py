@@ -13,10 +13,7 @@ def sort(array):
                 min_index = j
 
         if min_index != i:
-            # XOR-swapping to avoid temp variable
-            array[i] ^= array[min_index]
-            array[min_index] ^= array[i]
-            array[i] ^= array[min_index]
+            array[i], array[min_index] = array[min_index], array[i]
             history.append(array.copy())
 
     return (array, history)
